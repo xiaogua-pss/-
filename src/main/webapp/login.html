@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <table align="center" border="1">
+        <tr>
+            <td>用户名:</td>
+            <td><input type="text" ref="name" v-model="name"></td>
+        </tr>
+        <tr>
+            <td>密码:</td>
+            <td><input type="text" ref="password" v-model="password"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="button" value="登录" @click="getLogin()"><a href="register.html">没有账户，去注册</a></td>
+        </tr>
+    </table>
+</div>
+</body>
+<script type="text/javascript" src="vuejs/vuejs-2.5.16.js"></script>
+<script type="text/javascript" src="vuejs/axios-0.18.0.js"></script>
+<script type="text/javascript" src="vuejs/index.js"></script>
+</html>

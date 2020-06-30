@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xg.mapper.AdminMapper">
+
+    <select id="getAdminCode" resultType="Admin">
+        select * from t_admin where code=#{code}
+    </select>
+
+    <update id="updateAdmin" parameterType="Admin">
+        update t_admin set state=#{state} where id=#{id}
+    </update>
+
+</mapper>

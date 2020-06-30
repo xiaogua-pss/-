@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app" align="center">
+    <div>
+        <table border="1">
+            <tr align="center">
+                <th>
+                    <input type="checkbox"/>
+                </th>
+                <th>用户编号</th>
+                <th>用户名称</th>
+                <th>年龄</th>
+                <th colspan="10">操作</th>
+            </tr>
+            <tr align="center" v-for="u in list">
+                <td>
+                    <input type="checkbox" v-model="cids" v-bind:value="u.userid" />
+                </td>
+                <td>{{u.userid}}</td>
+                <td>{{u.username}}</td>
+                <td>{{u.userage}}</td>
+                <td>
+                    <button @click="findOne(u.userid);getProList()">修改</button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="100">
+                    <button @click="delAll()">批量删除</button>
+                    <button @click="addUser()">添加</button>
+                    <button @click="emailSender()">发送邮箱</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="div3" style="display: none">
+        <table border="1">
+            <tr align="center">
+                <td>用户名称</td>
+                <td>
+                    <input type="text" v-model="entity.user.username"/>
+                </td>
+            </tr>
+            <tr align="center">
+                <td>年龄</td>
+                <td>
+                    <input type="text" v-model="entity.user.userage"/>
+                </td>
+            </tr>
+            <tr align="center">
+                <td colspan="100">
+                    <button @click="addAddressRows()">新增地址</button>
+                </td>
+            </tr>
+            <tr v-for="(pojo,index) in entity.addresss">
+                <td colspan="100">
+                    省份：<select v-model="pojo.proid" @change="changpro(pojo.proid,index)">
+                    <option v-for="p in prolist" v-bind:value="p.id">{{p.cname}}</option>
+                </select>
+                    市：<select v-model="pojo.cityid" @change="changecity(pojo.cityid,index)">
+                    <option v-for="city in pojo.citylist" v-bind:value="city.id">{{city.cname}}</option>
+                </select>
+                    县：<select v-model="pojo.couid">
+                    <option v-for="cou in pojo.coulist"  v-bind:value="cou.id">{{cou.cname}}</option>
+                </select>
+                    详细地址：<input type="text" v-model="pojo.address"/>
+                    <button @click="revoAddressRow(index)">删除</button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="100">
+                    <button @click="saveuser()">保存</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="div4" style="display:none;">
+        <center>
+            <h1 style="color: #337FE5">发送QQ邮件</h1>
+            <table>
+                <tr>
+                    <td>我的邮箱</td>
+                    <td><input type="text" ref="MyEMAIL" id="MyEMAIL" placeholder="请选输入我方邮箱"/></td>
+                </tr>
+                <tr>
+                    <td>授权码(密码)</td>
+                    <td><input type="password" id="PASSWORD" placeholder="请选输入授权码"/></td>
+                </tr>
+                <tr>
+                    <td>对方邮箱</td>
+                    <td><input type="text" id="ToEMAIL" placeholder="请输入对方邮箱"/></td>
+                </tr>
+                <tr>
+                    <td>标题</td>
+                    <td><input type="text" id="TITLE" placeholder="请选输入邮件标题"/></td>
+                </tr>
+                <tr>
+                    <td>内容</td>
+                    <td><textarea name="CONTENT" style="width:700px;height:350px"></textarea></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="text-align: center">
+                        <button style="width:100px;height:50px;font-size: 30px;color: white;background-color: #337FE5" @click="sendEmail()">发送</button>
+                    </td>
+                </tr>
+            </table>
+        </center>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="vuejs/vuejs-2.5.16.js"></script>
+<script type="text/javascript" src="vuejs/axios-0.18.0.js"></script>
+<script type="text/javascript" src="vuejs/index.js"></script>
+</html>
